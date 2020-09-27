@@ -1,18 +1,16 @@
 pipeline {
-    agent any
+    agent { dockerfile true }
 
     stages {
         stage('Build') {
             steps {
                 echo 'Building..'
-                sh 'docker build -t server . '
+                sh 'ls /go/bin/'
             }
         }
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
-
-                sh 'docker run --name server --network host server'
             }
         }
     }
